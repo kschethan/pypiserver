@@ -51,6 +51,8 @@ COPY --from=builder_dependencies /install /usr/local
 COPY --from=builder_gosu /usr/local/bin/gosu /usr/local/bin/gosu
 COPY entrypoint.sh /entrypoint.sh
 
+COPY htaccess /.htaccess
+
 RUN addgroup -S -g 9898 pypiserver \
     && adduser -S -u 9898 -G pypiserver pypiserver \
     && mkdir -p /data/packages \
@@ -61,4 +63,4 @@ WORKDIR /data
 ENV PORT=8080
 EXPOSE $PORT
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh", "-P", "/.htaccess"]
