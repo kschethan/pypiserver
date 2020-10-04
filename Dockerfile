@@ -63,4 +63,4 @@ WORKDIR /data
 ENV PORT=8080
 EXPOSE $PORT
 
-ENTRYPOINT ["/entrypoint.sh", "-P", "/.htaccess"]
+ENTRYPOINT ["/entrypoint.sh"]
